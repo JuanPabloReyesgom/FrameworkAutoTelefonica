@@ -1,0 +1,12 @@
+package com.Telefonica.Automation.Colombia.Runners;
+
+import org.junit.runner.RunWith;
+import cucumber.api.CucumberOptions;
+import net.serenitybdd.cucumber.CucumberWithSerenity;
+
+@RunWith(CucumberWithSerenity.class)
+@CucumberOptions(features="src/test/resources/com/Telefonica/Automation/Colombia/features/Login.feature", glue = "com.Telefonica.Automation.Colombia.StepsDefinition", tags = {""})
+
+public class LoginRunners {
+
+}

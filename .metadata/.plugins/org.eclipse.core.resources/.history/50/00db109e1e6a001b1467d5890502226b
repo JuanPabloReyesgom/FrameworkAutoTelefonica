@@ -1,0 +1,12 @@
+package com.Telefonica.Automation.Colombia.PageObjects;
+
+import net.serenitybdd.core.pages.PageObject;
+import net.thucydides.core.annotations.DefaultUrl;
+
+@DefaultUrl("/login/login-colombia.html")
+public class LoginCrmPageObjects extends PageObject{
+	
+	
+
+
+}

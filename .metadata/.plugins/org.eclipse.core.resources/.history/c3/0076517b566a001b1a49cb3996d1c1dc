@@ -1,0 +1,43 @@
+# Se automatizara con Chrome
+webdriver.driver=chrome
+webdriver= --ignore-certificate-errors
+optionswd = webdriver.ChromeOptions()
+optionswd.add_argument('ignore-certificate-errors')
+# Indica la ubicacion del chromedriver
+#webdriver.chrome.driver=chromedriver.exe
+# Cada cuanto o en que momento quiero que se tomen evidencias
+serenity.take.screenshots=FOR_EACH_ACTION
+# Se configura la espera implicita
+webdriver.timeouts.implicitlywait = 10000
+# Switches de Chrome - configuraciones de ejecucion
+chrome.switches = --start-maximized --disable-popup-blocking
+chrome.capabilities.supportsAlerts  = true
+chrome.capabilities.unexpectedAlertBehaviour = ignore
+#Ambiente de pruebas
+webdriver.base.url=https://10.203.114.11/oc/bes/sm/login/login-colombia.html?redirectUrl=%2Fbes%2Fsm%2Flogin%2Foperator_ctz.html%3Ftimestamp%3D1612209498242&logoutReason=SessionInvalid%22);
+#Abrir el navegador en incognito
+chrome.switches = --incognito
+#Ambiente producción
+#webdriver.base.url=http://hseq.iplusdproduccioncolombia.com:5000
+#webdriver.driver=chrome
+#webdriver.driver=remote
+serenity.project.name =Informe HSEQ Smoke_Test
+#serenity.timeout=10000
+webdriver.wait.for.timeout=12000
+# How long does Serenity wait for elements that are not present on the screen to load
+#webdriver.timeouts.implicitlywait=5000
+# FOR_EACH_ACTION,BEFORE_AND_AFTER_EACH_STEP,AFTER_EACH_STEP,FOR_FAILURES,DISABLED
+#serenity.restart.for.each = feature
+serenity.browser.maximized=true
+// Create an object of desired capabilities class with Chrome driver
+DesiredCapabilities SSLCertificate = DesiredCapabilities.chrome();
+// Set the pre defined capability \u2013 ACCEPT_SSL_CERTS value to true
+SSLCertificate.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+// Open a new instance of chrome driver with the desired capability
+WebDriver driver = new ChromeDriver(SSLCertificate);
+options.addExtensions(new File("Path to CRX File"));
+DesiredCapabilities capabilities = new DesiredCapabilities();
+capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+ChromeOptions options = new ChromeOptions();
+options.setExperimentalOption("excludeSwitches",
+Arrays.asList("disable-popup-blocking"));

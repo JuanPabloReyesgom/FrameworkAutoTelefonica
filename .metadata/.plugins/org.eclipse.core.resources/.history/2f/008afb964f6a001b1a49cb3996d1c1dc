@@ -1,0 +1,26 @@
+package com.Telefonica.Automation.Colombia.Steps;
+
+import com.Telefonica.Automation.Colombia.PageObjects.LoginCrmPageObjects;
+
+public class LoginCrmSteps {
+	
+	LoginCrmPageObjects inicioDeSesionPOM=new LoginCrmPageObjects();
+	
+
+	public void abrirAplicacionCRM() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void clickEnLogIn(String usuario, String clave) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+	public void obtenerTextoDeMensaje() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

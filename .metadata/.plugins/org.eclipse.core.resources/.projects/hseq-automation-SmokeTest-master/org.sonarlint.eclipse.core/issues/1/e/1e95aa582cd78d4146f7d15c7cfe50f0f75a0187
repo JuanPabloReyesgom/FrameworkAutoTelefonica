@@ -1,0 +1,14 @@
+
+b
+java:S1135"2Complete the task associated to this TODO comment.(» æžÿÿÿÿÿH¯RINFOZ
+CODE_SMELL
+c	java:S106&"9Replace this use of System.out or System.err by a logger.(ÂÆ€7H°RMAJORZ
+CODE_SMELL
+g	java:S125"<This block of commented-out lines of code should be removed.(«ãó‚H±RMAJORZ
+CODE_SMELL
+g	java:S125"<This block of commented-out lines of code should be removed.(«ãó‚H²RMAJORZ
+CODE_SMELL
+l	java:S125)"<This block of commented-out lines of code should be removed.(î½Ü‚ÿÿÿÿÿH³RMAJORZ
+CODE_SMELL
+l	java:S125/"<This block of commented-out lines of code should be removed.(î½Ü‚ÿÿÿÿÿH´RMAJORZ
+CODE_SMELL

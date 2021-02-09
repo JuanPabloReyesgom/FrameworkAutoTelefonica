@@ -1,0 +1,14 @@
+
+`
+java:S1128"4Remove this unused import 'com.ibm.icu.impl.Assert'.(◊æª•H†RMINORZ
+CODE_SMELL
+â	java:S116"YRename this field "ImagenLogueado" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(å§≤îˇˇˇˇˇH¢RMINORZ
+CODE_SMELL
+Å	java:S116"VRename this field "BotonEntrar" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õ±ÓπH°RMINORZ
+CODE_SMELL
+£
+java:S1130#"wRemove the declaration of thrown exception 'java.lang.InterruptedException', as it cannot be thrown from method's body.(äæ€ŒH§RMINORZ
+CODE_SMELL
+s
+java:S1128"GRemove this unused import 'org.openqa.selenium.NoSuchElementException'.(ìÆ¸âHüRMINORZ
+CODE_SMELL

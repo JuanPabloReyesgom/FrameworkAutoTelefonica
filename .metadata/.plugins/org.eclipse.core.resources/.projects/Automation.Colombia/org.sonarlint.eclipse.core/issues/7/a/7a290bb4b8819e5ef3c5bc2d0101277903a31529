@@ -1,0 +1,7 @@
+
+¨
+java:S1130"wRemove the declaration of thrown exception 'java.lang.InterruptedException', as it cannot be thrown from method's body.(¨Éþ´þÿÿÿÿHõRMINORZ
+CODE_SMELL
+¢
+java:S1130"wRemove the declaration of thrown exception 'java.lang.InterruptedException', as it cannot be thrown from method's body.(¹ÍŸ;HöRMINORZ
+CODE_SMELL

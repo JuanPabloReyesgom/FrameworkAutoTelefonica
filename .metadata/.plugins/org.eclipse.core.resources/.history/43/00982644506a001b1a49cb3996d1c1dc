@@ -1,0 +1,13 @@
+Feature: Inicio de Sesion en CRM de Telefonica
+
+  Scenario Outline: Inicio de sesion en CRM
+    Given que estoy en la pagina de inicio de CRM
+    When ingreso mis credenciales en el CRM
+      |usuario|clave|
+      |<Usuario>|<Clave>|
+    Then valido que el login ha sido exitoso en CRM
+
+    Examples: 
+      |Usuario|Clave|
+      |101|Abc1234%|
+  

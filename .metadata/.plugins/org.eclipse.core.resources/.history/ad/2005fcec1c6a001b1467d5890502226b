@@ -1,0 +1,10 @@
+package com.Telefonica.Automation.Colombia.Steps;
+
+public class LoginCrmSteps {
+
+	public void abrirAplicacionCRM() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
