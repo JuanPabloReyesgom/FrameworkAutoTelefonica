@@ -8,7 +8,7 @@ import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
 
-//@DefaultUrl("")Test
+//@DefaultUrl("")TestAzureDevops
 public class LoginCrmPageObjects extends PageObject{
 	
 	  @FindBy(id = "ipt_name")
