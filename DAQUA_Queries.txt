@@ -1,0 +1,190 @@
+/************************************/
+/*				DOMAINS				*/
+/************************************/
+select 
+		dm.domains_id, 
+    	dm.domains_name, 
+        dm.domains_description,
+        dm.domains_parent_id,
+    	dm.domains_load_date, 
+    d.domains_id iniciativa_id,
+    d.domains_name iniciativa, 
+    d.domains_parent_id iniciativa_parent_id
+from td_metrics.esq_td_metrics.domains dm
+left join td_metrics.esq_td_metrics.domains d
+on dm.domains_id = d.domains_parent_id
+where d.domains_load_date in(select max(domains_load_date) from "td_metrics"."esq_td_metrics"."domains")
+and dm.domains_load_date in(select max(domains_load_date) from "td_metrics"."esq_td_metrics"."domains")
+and dm.domains_parent_id is not null;
+
+/************************************/
+/*				CONCEPTS			*/
+/************************************/
+
+SELECT distinct 
+	concepts_business_concept_id,
+	concepts_name,
+ 	concepts_ts,
+	concepts_load_date
+from (SELECT c.*,max(c.concepts_load_date) over w as "max_date" FROM "esq_td_metrics"."concepts" c
+inner join "esq_td_metrics"."concepts" cp
+on c.concepts_business_concept_id=cp.concepts_business_concept_id and c.concepts_load_date = cp.concepts_load_date
+window w as (partition by c.concepts_business_concept_id)) tc
+where concepts_load_date = max_date;
+
+/************************************/
+/*		 implementations_mv			*/
+/************************************/
+SELECT 
+ 	"implementations_implementation_key",
+	"implementations_id",
+	"implementations_ts",
+	"implementations_rule_id",
+    "implementations_goal",
+    "implementations_minimum",
+    "implementations_result_type",
+	"implementations_load_date",
+    "rda",
+    "product",
+    "segment",
+    "document",
+    "criticity",
+    "scib_unit",
+    "status_dq",
+    "client_type",
+    "control_type",
+    "dq_principle",
+    "control_owner_dq",
+    "sn_production",
+    "business_layer",
+    "ensured_system",
+    "guarantee_type",
+    "periodicity_dq",
+    "automation_level",
+    "control_executor_dq",
+    "control_population",
+    implementation_description, 
+    local_quality_principie, 
+    data_perimeter,
+    id_kde,
+ 	kde_name,
+ 	local_control_id,
+ 	local_quality_principie
+FROM "td_metrics"."esq_td_metrics"."implementations_mv"
+order by implementations_id asc, implementations_ts desc;
+
+/************************************/
+/*		 		RULES				*/
+/************************************/
+
+select
+  rules_id,
+  rules_business_concept_id,
+  rules_ts,
+  rules_active,
+  rules_load_date,
+  rules_name,
+  rules_df_content,
+  rules_df_name
+from (SELECT a.*,max(a.rules_load_date) over w as "max_date" FROM "esq_td_metrics"."rules_mv" a
+inner join "esq_td_metrics"."rules_mv" rl
+on a.rules_id=rl.rules_id and a.rules_load_date = rl.rules_load_date
+window w as (partition by a.rules_id)) tc
+where rules_load_date = max_date
+order by rules_id asc;
+
+/************************************/
+/*		 		RESULTS				*/
+/************************************/
+
+SELECT 
+	cast(coalesce("results_result",0) as decimal) results_result,
+    "results_implementation_id",
+	"results_ts",
+	"results_records",
+	"results_errors",
+	"results_load_date",
+    "results_date",
+	"results_params",
+    "results_id"
+FROM "esq_td_metrics"."results"
+order by results_implementation_id asc, results_ts asc;
+
+/****************************************/
+/*	last_implementation_structures_mv	*/
+/****************************************/
+
+SELECT "implementation_structures_implementation_id",
+    "implementation_structures_implementation_key",
+    "implementation_structures_structure_id",
+    "implementation_structures_structure_external_id",
+    "implementation_structures_relation_type",
+    "implementation_structures_load_date",
+    "implementation_structures_ts"
+FROM "td_metrics"."esq_td_metrics"."last_implementation_structures_mv";
+
+/****************************************/
+/*		implementation_structures_mv	*/
+/****************************************/
+
+SELECT "implementation_structures_implementation_id",
+     "implementation_structures_structure_external_id"
+ FROM "td_metrics"."esq_td_metrics"."implementation_structures"
+where implementation_structures_load_date in(select max(implementation_structures_load_date) from "td_metrics"."esq_td_metrics"."implementation_structures");
+
+/****************************************/
+/*				SYSTEMS					*/
+/****************************************/
+SELECT "systems_external_id",
+    "systems_name",
+    "systems_load_date"
+from "td_metrics"."esq_td_metrics"."systems"
+where systems_load_date in(select max(systems_load_date) from "td_metrics"."esq_td_metrics"."systems");
+
+/****************************************/
+/*			MAX_STRUCTURES_MV			*/
+/****************************************/
+
+SELECT 
+	a.structures_class,
+    a.structures_deleted_at,
+    a.structures_domain_id,
+    a.structures_external_id,
+    case when a.structures_type='FIELD' then a.structures_name end as columna,
+	case when b.structures_type='TABLE' then b.structures_name end as tabla,
+    a.structures_inserted_at,
+    a.structures_metadata,
+    a.structures_name,
+    a.structures_system_external_id,
+    a.structures_type,
+    a.structures_version,
+    a.structures_ts,
+    a.structures_load_date,
+    a.data_owner_area,
+    a.data_owner_contact,
+    a.ontology,
+    a.ontology2,
+    a.ontology3,
+    a.ontology4,
+    a.ontology5,
+    a.ontology6,
+    a.sec_taxonomy,
+    a.core_data,
+    a.data_frequency,
+    a.refreshing_frecuency,
+    a.historical,
+    a.control_model,
+    a.possible_values,
+    a.data_steward_area,
+    a.data_steward_contact,
+    a.dat_hub,
+    a.layer,
+    a.producer,
+    a.golden_source,
+    a.system_source
+FROM td_metrics.esq_td_metrics.max_structures_mv a
+left join td_metrics.esq_td_metrics.max_structures_mv b
+on substring(a.structures_external_id,0,length(a.structures_external_id)-length(a.structures_name)) = b.structures_external_id
+where a.structures_load_date in(select max(structures_load_date) from "td_metrics"."esq_td_metrics"."max_structures_mv")
+and case when a.structures_type='FIELD' then a.structures_name end is not null or case when b.structures_type='TABLE' then b.structures_name end is not null;
+
